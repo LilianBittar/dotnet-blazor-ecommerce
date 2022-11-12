@@ -1551,11 +1551,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\repos\\dotnet-blazor-ecommerce\\src\\BlazorEcommerce\\BlazorEcommerce.csproj",
-      "projectName": "BlazorEcommerce",
-      "projectPath": "D:\\repos\\dotnet-blazor-ecommerce\\src\\BlazorEcommerce\\BlazorEcommerce.csproj",
+      "projectUniqueName": "D:\\repos\\dotnet-blazor-ecommerce\\src\\Client\\Client.csproj",
+      "projectName": "Client",
+      "projectPath": "D:\\repos\\dotnet-blazor-ecommerce\\src\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\bitta\\.nuget\\packages\\",
-      "outputPath": "D:\\repos\\dotnet-blazor-ecommerce\\src\\BlazorEcommerce\\obj\\",
+      "outputPath": "D:\\repos\\dotnet-blazor-ecommerce\\src\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bitta\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iwu7zQuciErWDO5YEKFHg2MYXaHO20KP5yFY1KF/P4d/wH9z2w63J/bXx3QqM3evHxoH3hmQT/LjmUApTNiETA==",
+  "dgSpecHash": "QJSSAOlZ2LE9IxlNj925bjXwHFDwjCPpkImhuy4JYEE6GTlniT7DLvpPGVarTa7tFkMnijUG1fZs+ML/jZ2QHw==",
   "success": true,
-  "projectFilePath": "D:\\repos\\dotnet-blazor-ecommerce\\src\\BlazorEcommerce\\BlazorEcommerce.csproj",
+  "projectFilePath": "D:\\repos\\dotnet-blazor-ecommerce\\src\\Client\\Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bitta\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.5\\microsoft.aspnetcore.authorization.6.0.5.nupkg.sha512",
     "C:\\Users\\bitta\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.5\\microsoft.aspnetcore.components.6.0.5.nupkg.sha512",
