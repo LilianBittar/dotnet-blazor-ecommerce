@@ -1,4 +1,4 @@
-namespace Shared;
+namespace BlazorEcommerce.Shared;
 
 public class Product
 {
