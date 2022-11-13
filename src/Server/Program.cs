@@ -9,7 +9,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+    // Allow CORS and PUT, POST, DELETE etc.
+app.UseCors(builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
