@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+
+  ecommercedb:
+    image: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+  ecommerce.server:
+    image: ${DOCKER_REGISTRY-}ecommerceserver
+    build:
+      context: .
+      dockerfile: src/Server/Dockerfile
+
+volumes:
+  postgres_data:

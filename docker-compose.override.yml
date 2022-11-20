@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  ecommercedb:
+    container_name: ecommercedb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=EcommerceDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  
+  ecommerce.server:
+    container_name: ecommerce.server
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DefaultConnection=Server=ecommercedb;Port=5432;Database=EcommerceDb;User Id=admin;Password=admin1234;"
+    depends_on:
+      - ecommercedb
+    ports:
+      - "8002:80"
