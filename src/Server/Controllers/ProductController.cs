@@ -19,6 +19,10 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<List<Product>>> GetProduct()
     {
         var Products = await _context.Products.ToListAsync();
+        var response = new ServiceRespose<List<Product>>()
+        {
+            Data = Products
+        };
         return Ok(Products);
     }
 }
