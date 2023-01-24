@@ -17,10 +17,17 @@ public class ProductController : ControllerBase
         _productService = productService;
      }
 
-        [HttpGet]
+    [HttpGet]
     public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProduct()
     {
         var result = await _productService.GetProductsAsync();
+        return Ok(result);
+    }
+
+    [HttpGet("{productId}")]    
+    public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
+    {
+        var result = await _productService.GetProductsAsync(productId);
         return Ok(result);
     }
 }
