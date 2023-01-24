@@ -38,6 +38,15 @@ a, .btn-link {
     color: #26b050;
 }
 
+.media {
+    display: flex;
+    align-items: flex-start;
+}
+
+.media-body {
+    flex: 1;
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
