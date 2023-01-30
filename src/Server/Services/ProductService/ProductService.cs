@@ -9,6 +9,8 @@ public class ProductService : IProductService
 
     private readonly DataContext _context;
 
+  
+
     public ProductService(DataContext context)
     {
         _context = context;
@@ -52,6 +54,20 @@ public class ProductService : IProductService
                 .ToListAsync()
         };
 
+        return response;
+    }
+
+    public async Task<ServiceResponse<List<Product>>> SearchProducts(string searchText)
+    {
+        var response = new ServiceResponse<List<Product>>
+        {
+            Data = await _context.Products
+            .Where(P => P.Title.ToLower().Contains(searchText.ToLower())
+            || 
+            P.Description.ToLower().Contains(searchText.ToLower()))
+            .Include(P => P.Variants)
+            .ToListAsync()
+        };
         return response;
     }
 }
