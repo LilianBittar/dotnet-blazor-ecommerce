@@ -3,12 +3,12 @@
 @inject IProductService ProductService
 
 
-@if(product == null)
+@if (product == null)
 {
     <span>@message</span>
 }
- else
- {
+else
+{
     <div class="media">
         <div class="media-img-wrapper mr-2">
             <img class="media-img" src="@product.ImageUrl" alt="@product.Title" />
@@ -16,20 +16,31 @@
         <div class="media-body">
             <h2 class="mb-0">@product.Title</h2>
             <p>@product.Description</p>
-            <h4 class="price">
-                @* $@product.Price *@
-            </h4>            
-        </div>    
+            @if (GetSelectedVariant() != null)
+            {
+                @if (GetSelectedVariant().OriginalPrice > GetSelectedVariant().Price)
+                {
+                    <h6 class="text-muted original-price">
+                        $@GetSelectedVariant().OriginalPrice
+                    </h6>
+                }
+                <h4 class="price">
+                    $@GetSelectedVariant().Price
+                </h4>
+            }
+
+        </div>
     </div>
- }
+}
 @code {
     private Product? product = null;
     private string message = string.Empty;
+    private int currentTypeId = 1;
 
     [Parameter]
     public int Id { get; set; }
 
-    protected override async Task OnParametersSetAsync() 
+    protected override async Task OnParametersSetAsync()
     {
         message = "Loading products";
         var result = await ProductService.GetProduct(Id);
@@ -40,6 +51,16 @@
         else
         {
             product = result.Data;
+            if (product.Variants.Count > 0)
+            {
+                currentTypeId = product.Variants[0].ProductTypeId;
+            }
         }
+    }
+
+    private ProductVariant GetSelectedVariant()
+    {
+        var variant = product.Variants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
+        return variant;
     }
 }
