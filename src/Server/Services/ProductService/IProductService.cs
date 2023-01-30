@@ -8,4 +8,5 @@ public interface IProductService
     
     Task<ServiceResponse<Product>> GetProductsAsync(int productId);
     Task<ServiceResponse<List<Product>>> GetProductsByCategory(string categoryUrl);
+    Task<ServiceResponse<List<Product>>> SearchProducts(string searchText);
 }
