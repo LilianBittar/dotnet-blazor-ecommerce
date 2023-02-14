@@ -99,16 +99,26 @@ public class ProductService : IProductService
                                 .ToListAsync();
         }
 
-    public async Task<ServiceResponse<List<Product>>> SearchProducts(string searchText)
+    public async Task<ServiceResponse<ProductSearchResult>> SearchProducts(string searchText, int page)
     {
-        var response = new ServiceResponse<List<Product>>
-        {
-            Data = await _context.Products
+        var pageResults = 2f;
+        var pageCount = Math.Ceiling((await FindProductsBySearchText(searchText)).Count / pageResults);
+        var products = await _context.Products
             .Where(P => P.Title.ToLower().Contains(searchText.ToLower())
             || 
             P.Description.ToLower().Contains(searchText.ToLower()))
             .Include(P => P.Variants)
-            .ToListAsync()
+            .Skip((page - 1) * (int)pageResults)
+            .Take((int)pageResults)
+            .ToListAsync();
+
+        var response = new ServiceResponse<ProductSearchResult>
+        {
+            Data = new ProductSearchResult {
+                Products = products,
+                CurrentPage = page,
+                Pages =(int) pageCount
+            }
         };
         return response;
     }
