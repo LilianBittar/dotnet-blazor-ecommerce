@@ -52,4 +52,10 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("feautured")]
+    public async Task<ActionResult<ServiceResponse<Product>>> GetFeaturedProducts()
+    {
+        var result = await _productService.GetFeaturedProducts();
+        return Ok(result);
+    }
 }

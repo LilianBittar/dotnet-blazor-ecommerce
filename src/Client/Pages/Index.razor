@@ -5,8 +5,14 @@
 
 <PageTitle>My shop</PageTitle>
 
-<ProductList />
-
+@if (SearchText == null && CategoryUrl == null)
+{
+    <FeaturedProducts />
+}
+else
+{
+    <ProductList />
+}
 
 @code {
     [Parameter]
@@ -27,4 +33,3 @@
         }
     }
 }
-
