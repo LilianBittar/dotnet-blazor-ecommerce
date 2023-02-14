@@ -8,6 +8,7 @@ public interface IProductService
     List<Product> products { get; set; }
     string Message {get; set;}
     int CurrentPage {get; set;}
+    int PageCount {get; set;}
     string LastSearchText {get; set;}
     Task GetProducts(string? categoryUrl = null);
     Task<ServiceResponse<Product>> GetProduct(int productId);
