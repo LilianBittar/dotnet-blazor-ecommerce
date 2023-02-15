@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.Services.CartService;
 using Server.Services.CategoryService;
 using Server.Services.ProductService;
 
@@ -16,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService, CartService>();
 var app = builder.Build();
     // Allow CORS and PUT, POST, DELETE etc.
 app.UseCors(builder =>
