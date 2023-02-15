@@ -1,0 +1,23 @@
+﻿@page "/cart"
+@inject ICartService CartService
+
+<PageTitle>Shopping Cart</PageTitle>
+<h3>Cart</h3>
+
+@code {
+    List<CartProductResponse> cartProducts = null;
+    string message = "Loading cart...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if ((await CartService.GetCartItems()).Count == 0)
+        {
+            message = "Your cart is empty.";
+            cartProducts = new List<CartProductResponse>();        
+        }
+        else{
+            cartProducts = await CartService.GetCartProducts();
+        }
+    }
+
+}
