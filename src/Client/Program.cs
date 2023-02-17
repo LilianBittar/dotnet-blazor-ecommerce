@@ -4,6 +4,7 @@ using Client;
 using Client.Services.ProductService;
 using Client.Services.CategoryService;
 using Blazored.LocalStorage;
+using Client.Services.AuthService;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,6 +14,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddBlazoredLocalStorage();
 await builder.Build().RunAsync();
 
