@@ -14,6 +14,14 @@ public class AuthService : IAuthService
         this.context = context;
     }
 
+    public async Task<ServiceResponse<string>> Login(string email, string password)
+    {
+        var response = new ServiceResponse<string> {
+            Data = "token"
+        };
+        return response;
+    }
+
     public async Task<ServiceResponse<int>> Register(User user, string password)
     {
         if (await UserExists(user.Email))
@@ -33,7 +41,8 @@ public class AuthService : IAuthService
         context.Users.Add(user);
         await context.SaveChangesAsync();
         return new ServiceResponse<int> {
-            Data = user.Id
+            Data = user.Id,
+            Message = "Registration successful!"
         };
     }
 
