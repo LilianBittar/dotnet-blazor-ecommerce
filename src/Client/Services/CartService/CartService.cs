@@ -22,7 +22,7 @@ public class CartService : ICartService
 
     public async Task AddToCart(CartItem cartItem)
     {
-        if((await _authStateProvide.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated)
+        if(await IsUserAuthenticated())
         {
             Console.WriteLine("user is authenticated");
         }
@@ -47,6 +47,11 @@ public class CartService : ICartService
 
         await _localStorage.SetItemAsync("cart", cart);
         OnChange.Invoke();
+    }
+
+    private async Task<bool> IsUserAuthenticated()
+    {
+        return (await _authStateProvide.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated;
     }
 
     public async Task<List<CartItem>> GetCartItems()
