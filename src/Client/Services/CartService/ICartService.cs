@@ -10,4 +10,5 @@ public interface ICartService
     Task<List<CartProductResponse>> GetCartProducts();
     Task RemoveProductFromCart(int productId, int producttypeId);
     Task Update(CartProductResponse product);
+    Task StoreCartItems(bool emptyLocalCart);
 }
