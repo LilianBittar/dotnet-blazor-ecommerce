@@ -104,4 +104,26 @@ public class CartService : ICartService
 
         return new ServiceResponse<bool> { Data = true };
     }
+
+    public async Task<ServiceResponse<bool>> UpdateQuantity(CartItem cartItem)
+    {
+        var dbCartItem = await _context.CartItems
+            .FirstOrDefaultAsync(e => e.ProductId == cartItem.ProductId &&
+            e.ProductTypeId == cartItem.ProductTypeId &&
+            e.UserId == GetUserId());
+        
+        if (dbCartItem == null)
+        {
+            return new ServiceResponse<bool>
+            {
+                Data = false,
+                Success = false,
+                Message = "Cart item does not exit."
+            };
+        }
+        dbCartItem.Quantity = cartItem.Quantity;
+        await _context.SaveChangesAsync();
+
+        return new ServiceResponse<bool> {Data = true};
+    }
 }
