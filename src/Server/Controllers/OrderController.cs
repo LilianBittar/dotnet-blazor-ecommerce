@@ -1,4 +1,6 @@
+using BlazorEcommerce.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Server.Services.OrderService;
 
 namespace Server.Controllers;
 
@@ -6,5 +8,17 @@ namespace Server.Controllers;
 [ApiController]
 public class OrderController : ControllerBase
 {
-    
+    private readonly IOrderService _order;
+
+    public OrderController(IOrderService order)
+    {
+        _order = order;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<ServiceResponse<bool>>> PlaceOrder()
+    {
+        var result = await _order.PlaceOrder();
+        return Ok(result);
+    }
 }
