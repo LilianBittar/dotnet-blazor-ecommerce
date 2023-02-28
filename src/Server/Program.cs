@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Server.Data;
 using Server.Services.CartService;
 using Server.Services.CategoryService;
+using Server.Services.OrderService;
 using Server.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
