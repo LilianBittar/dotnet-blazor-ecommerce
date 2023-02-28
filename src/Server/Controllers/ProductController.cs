@@ -1,7 +1,5 @@
 using BlazorEcommerce.Shared;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Server.Data;
 using Server.Services.ProductService;
 
 namespace Server.Controllers;
