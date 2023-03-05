@@ -12,12 +12,16 @@ public class AuthService : IAuthService
 {
     private readonly DataContext context;
     private readonly IConfiguration _configuration;
+    private readonly IHttpContextAccessor _contextAccessor;
 
-    public AuthService(DataContext context, IConfiguration configuration)
+    public AuthService(DataContext context, IConfiguration configuration, IHttpContextAccessor contextAccessor)
     {
-        this.context = context;
+        context = context;
+        _configuration = configuration;
+        _contextAccessor = contextAccessor;
     }
 
+    public int GetUserId() => int.Parse(_contextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
     public async Task<ServiceResponse<string>> Login(string email, string password)
     {
         var response = new ServiceResponse<string>();
@@ -136,4 +140,5 @@ public class AuthService : IAuthService
 
         return new ServiceResponse<bool> { Data = true, Message = "Pssword has been changes."};
     }
+
 }
