@@ -28,4 +28,11 @@ public class OrderController : ControllerBase
         var result = await _order.GetOrders();
         return Ok(result);
     }
+
+     [HttpGet("{orderId}")]
+    public async Task<ActionResult<ServiceResponse<OrderDetailsResponse>>> GetOrdersDetails(int orderId)
+    {
+        var result = await _order.GetOrderDetails(orderId);
+        return Ok(result);
+    }
 }
